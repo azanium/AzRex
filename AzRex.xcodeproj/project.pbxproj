@@ -8,12 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		C13CE1911CB28E070044A85E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13CE1901CB28E070044A85E /* AppDelegate.swift */; };
-		C13CE1931CB28E070044A85E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13CE1921CB28E070044A85E /* ViewController.swift */; };
 		C13CE1961CB28E070044A85E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C13CE1941CB28E070044A85E /* Main.storyboard */; };
 		C13CE1981CB28E070044A85E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C13CE1971CB28E070044A85E /* Assets.xcassets */; };
 		C13CE19B1CB28E070044A85E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C13CE1991CB28E070044A85E /* LaunchScreen.storyboard */; };
 		C13CE1A61CB28E070044A85E /* AzRexTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13CE1A51CB28E070044A85E /* AzRexTests.swift */; };
 		C13CE1B11CB28E070044A85E /* AzRexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13CE1B01CB28E070044A85E /* AzRexUITests.swift */; };
+		C198C6A91CB3670C00A64EB0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198C6A81CB3670C00A64EB0 /* HomeViewController.swift */; };
+		C198C6AB1CB3703000A64EB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */; };
 		D1BB93AFF372999D17F951A6 /* libPods-AzRex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DD52E45ADB476F20534FCA /* libPods-AzRex.a */; };
 /* End PBXBuildFile section */
 
@@ -40,7 +41,6 @@
 		62DD52E45ADB476F20534FCA /* libPods-AzRex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AzRex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13CE18D1CB28E060044A85E /* AzRex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AzRex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13CE1901CB28E070044A85E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		C13CE1921CB28E070044A85E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		C13CE1951CB28E070044A85E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		C13CE1971CB28E070044A85E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		C13CE19A1CB28E070044A85E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -52,6 +52,8 @@
 		C13CE1B01CB28E070044A85E /* AzRexUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AzRexUITests.swift; sourceTree = "<group>"; };
 		C13CE1B21CB28E070044A85E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C198C6A41CB3580200A64EB0 /* AzRex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AzRex-Bridging-Header.h"; sourceTree = "<group>"; };
+		C198C6A81CB3670C00A64EB0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,6 +61,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C198C6AB1CB3703000A64EB0 /* AVFoundation.framework in Frameworks */,
 				D1BB93AFF372999D17F951A6 /* libPods-AzRex.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -83,6 +86,7 @@
 		B517D4B3B491763E148DBF2B /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */,
 				62DD52E45ADB476F20534FCA /* libPods-AzRex.a */,
 			);
 			name = Frameworks;
@@ -114,7 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				C13CE1901CB28E070044A85E /* AppDelegate.swift */,
-				C13CE1921CB28E070044A85E /* ViewController.swift */,
+				C198C6A81CB3670C00A64EB0 /* HomeViewController.swift */,
 				C13CE1941CB28E070044A85E /* Main.storyboard */,
 				C13CE1971CB28E070044A85E /* Assets.xcassets */,
 				C13CE1991CB28E070044A85E /* LaunchScreen.storyboard */,
@@ -222,6 +226,7 @@
 				TargetAttributes = {
 					C13CE18C1CB28E060044A85E = {
 						CreatedOnToolsVersion = 7.3;
+						DevelopmentTeam = RC4SK9KMQQ;
 					};
 					C13CE1A01CB28E070044A85E = {
 						CreatedOnToolsVersion = 7.3;
@@ -333,8 +338,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C13CE1931CB28E070044A85E /* ViewController.swift in Sources */,
 				C13CE1911CB28E070044A85E /* AppDelegate.swift in Sources */,
+				C198C6A91CB3670C00A64EB0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -480,10 +485,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AzRex/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.azacode.AzRex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcoin.AzRex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AzRex/AzRex-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -495,10 +504,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AzRex/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.azacode.AzRex;
+				PRODUCT_BUNDLE_IDENTIFIER = com.mcoin.AzRex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AzRex/AzRex-Bridging-Header.h";
 			};
 			name = Release;
