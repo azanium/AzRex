@@ -11,22 +11,42 @@ import AVFoundation
 import MobileCoreServices
 
 
-class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+class SAHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    
+    @IBOutlet weak var footerView: UIView!
+    @IBOutlet weak var recordButton: UIButton!
+    @IBOutlet weak var tableView: UITableView!
     
     let taskQ = dispatch_queue_create("AVSerialQueue", nil)
     var progressView: MBProgressHUD!
     var counter = 1
     var path = ""
+    var projectList: [String] = []
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.progressView = MBProgressHUD(window: UIApplication.sharedApplication().keyWindow)
         
+        self.decorateNavigationBar()
+        
+        self.footerView.backgroundColor = self.navigationBarTintColor()
+        self.recordButton.decorateCircularButton(false)
+        self.tableView.backgroundColor = ColorTools.UIColorFromHexString("#101010")
+        self.tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        self.reloadData()
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    override func setEditing(editing: Bool, animated: Bool) {
+        super.setEditing(editing, animated: animated)
+        
+        self.tableView.setEditing(editing, animated: animated)
     }
     
     func displayError(error: NSError!) {
@@ -40,6 +60,21 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
     }
     
+    // MARK: - Data
+    
+    func reloadData() {
+        let path = NSHomeDirectory().stringByAppendingString("/Documents/")
+        do {
+            self.projectList = try NSFileManager.defaultManager().contentsOfDirectoryAtPath(path)
+        }
+        catch _ {
+            print("# Failed to fetch projects")
+        }
+        
+        self.tableView.reloadData()
+    }
+    
+    // MARK: - Video Capture and Exporter
     
     func exportH264(videoUrl: NSURL) {
         
@@ -73,6 +108,7 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
                 else {
                     
                     self.progressView.hide(true)
+                    self.reloadData()
                     self.showAlert("Success", message: "The video successfully exported to MP4", dismissButton: "OK")
                     
                 }
@@ -110,6 +146,7 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
             dispatch_async(dispatch_get_main_queue(), { 
                 self.progressView = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
                 self.progressView.mode = MBProgressHUDMode.AnnularDeterminate
+                self.progressView.color = UIColor(red: 1.0, green: 1.0, blue: 1.0, alpha: 0.4)
                 self.progressView.labelText = "Exporting.."
                 self.exportH264(videoUrl)
             })
@@ -119,6 +156,74 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
         
         self.presentViewController(captureVC, animated: true, completion: nil)
         
+    }
+    
+    // MARK: - UITableViewDataSource
+    
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        if projectList.count == 0 {
+            let emptyLabel = UILabel(frame: CGRectMake(0, 0, self.view.bounds.size.width, self.view.bounds.size.height))
+            emptyLabel.text = "You have no projects.\nPlease record a new one."
+            emptyLabel.textColor = UIColor.whiteColor()
+            emptyLabel.numberOfLines = 0
+            emptyLabel.textAlignment = NSTextAlignment.Center
+            emptyLabel.font = UIFont(name: "HelveticaNeue", size: 16)
+            
+            self.tableView.backgroundView = emptyLabel
+            
+            return 0
+        }
+        else {
+            self.tableView.backgroundView = nil
+            return 1
+        }
+    }
+    
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return projectList.count
+    }
+    
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("ProjectCell") as! SAProjectCell
+        
+        let project = self.projectList[self.projectList.count - indexPath.row - 1]
+        
+        cell.backgroundColor = ColorTools.UIColorFromHexString("#101010")
+        cell.projectLabel.text = "\(indexPath.row + 1). \(project)"
+        
+        return cell
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        tableView.deselectRowAtIndexPath(indexPath, animated: true)
+    }
+    
+    func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+    }
+    
+    func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") { (row, index) -> Void in
+            
+            let project = self.projectList[index.row]
+            
+            let path = NSHomeDirectory().stringByAppendingFormat("/Documents/%@", project)
+            
+            do {
+                try NSFileManager.defaultManager().removeItemAtPath(path)
+            }
+            catch _ {
+                self.showAlert("ERROR", message: "Failed to delete the project", dismissButton: "OK")
+            }
+            
+            self.reloadData()
+        }
+        
+        return [deleteAction]
     }
     
 }

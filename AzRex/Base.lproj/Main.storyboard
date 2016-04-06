@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--H264 Recorder-->
@@ -17,27 +18,84 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8Z-AJ-iW6">
-                                <rect key="frame" x="243" y="127" width="115" height="37"/>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Hjp-hR-Iqs">
+                                <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a8Z-AJ-iW6">
+                                        <rect key="frame" x="275" y="15" width="50" height="50"/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="50" id="PGD-Nv-6cD"/>
+                                            <constraint firstAttribute="height" constant="50" id="hw0-Hw-Pwk"/>
+                                        </constraints>
+                                        <state key="normal" image="camera"/>
+                                        <connections>
+                                            <action selector="capture" destination="BYZ-38-t0r" eventType="touchUpInside" id="BAw-R3-1xF"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="115" id="PGD-Nv-6cD"/>
-                                    <constraint firstAttribute="height" constant="37" id="hw0-Hw-Pwk"/>
+                                    <constraint firstAttribute="height" constant="80" id="2kJ-1Z-xNX"/>
+                                    <constraint firstItem="a8Z-AJ-iW6" firstAttribute="centerX" secondItem="Hjp-hR-Iqs" secondAttribute="centerX" id="uGk-uW-J5a"/>
+                                    <constraint firstItem="a8Z-AJ-iW6" firstAttribute="centerY" secondItem="Hjp-hR-Iqs" secondAttribute="centerY" id="v9V-P9-VnI"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="Capture"/>
+                            </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="70" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="bMR-s4-LYe">
+                                <rect key="frame" x="0.0" y="64" width="600" height="456"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="55" id="gga-Au-Lnh" customClass="SAProjectCell" customModule="AzRex" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="28" width="600" height="55"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gga-Au-Lnh" id="m6C-ca-M2O">
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USs-2w-iQo">
+                                                    <rect key="frame" x="16" y="17" width="568" height="21"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="21" id="RZj-Vu-BIu"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                                    <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="USs-2w-iQo" firstAttribute="leading" secondItem="m6C-ca-M2O" secondAttribute="leadingMargin" constant="8" id="78X-T8-ypK"/>
+                                                <constraint firstItem="USs-2w-iQo" firstAttribute="centerY" secondItem="m6C-ca-M2O" secondAttribute="centerY" id="qc5-pg-9Gv"/>
+                                                <constraint firstAttribute="trailingMargin" secondItem="USs-2w-iQo" secondAttribute="trailing" constant="8" id="tio-eC-dDo"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="projectLabel" destination="USs-2w-iQo" id="tnb-13-ATh"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
                                 <connections>
-                                    <action selector="capture" destination="BYZ-38-t0r" eventType="touchUpInside" id="BAw-R3-1xF"/>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="LE1-JG-zAO"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="sDx-Fp-TVk"/>
                                 </connections>
-                            </button>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="a8Z-AJ-iW6" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dFh-7e-uKN"/>
-                            <constraint firstItem="a8Z-AJ-iW6" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="63" id="q5N-r1-32O"/>
+                            <constraint firstItem="Hjp-hR-Iqs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="2RK-DK-NBe"/>
+                            <constraint firstAttribute="trailing" secondItem="Hjp-hR-Iqs" secondAttribute="trailing" id="4aW-zQ-mmt"/>
+                            <constraint firstAttribute="trailing" secondItem="bMR-s4-LYe" secondAttribute="trailing" id="9hh-pg-KCB"/>
+                            <constraint firstItem="bMR-s4-LYe" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="Dmr-yJ-fq1"/>
+                            <constraint firstItem="Hjp-hR-Iqs" firstAttribute="top" secondItem="bMR-s4-LYe" secondAttribute="bottom" id="FZw-R3-qmK"/>
+                            <constraint firstItem="bMR-s4-LYe" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="T3A-ZZ-9tZ"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="Hjp-hR-Iqs" secondAttribute="bottom" id="bav-yE-Qj2"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="H264 Recorder" id="cro-kc-n6Q"/>
+                    <connections>
+                        <outlet property="footerView" destination="Hjp-hR-Iqs" id="wEz-gf-PfM"/>
+                        <outlet property="recordButton" destination="a8Z-AJ-iW6" id="yxv-dB-5AJ"/>
+                        <outlet property="tableView" destination="bMR-s4-LYe" id="d6O-Xt-Ffi"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -62,4 +120,7 @@
             <point key="canvasLocation" x="325" y="315"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="camera" width="32" height="32"/>
+    </resources>
 </document>

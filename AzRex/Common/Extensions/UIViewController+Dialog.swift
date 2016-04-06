@@ -21,4 +21,31 @@ extension UIViewController {
         
         self.presentViewController(alertController, animated: true, completion: nil)
     }
+    
+    func navigationBarTintColor() -> UIColor {
+        return ColorTools.UIColorFromHexString("#303030")
+    }
+    
+    func decorateNavigationBar(decorateTitle: Bool = true) {
+        
+        let titleDict: NSDictionary = [NSFontAttributeName: UIFont(name: "HelveticaNeue-Bold", size: 18)!, NSForegroundColorAttributeName: UIColor.whiteColor()]
+        self.navigationController?.navigationBar.titleTextAttributes = titleDict as? [String : AnyObject]
+        
+        self.navigationItem.leftBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.navigationItem.rightBarButtonItem?.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.tintColor = UIColor.whiteColor()
+        self.navigationController?.navigationBar.barStyle = UIBarStyle.Black
+        self.navigationController?.navigationBar.barTintColor = self.navigationBarTintColor()
+    }
+}
+
+
+extension UIButton {
+    
+    func decorateCircularButton(useBorder: Bool) {
+        self.layer.cornerRadius = self.bounds.width / 2
+        self.layer.masksToBounds = true
+        self.layer.borderColor = UIColor.whiteColor().CGColor
+        self.layer.borderWidth = 2.0
+    }
 }
