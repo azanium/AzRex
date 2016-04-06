@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09F5B7FA45DA893837923358 /* Pods_AzRex.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AC0A8DAA6FACE9BBD2286F5A /* Pods_AzRex.framework */; };
 		C13CE1911CB28E070044A85E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13CE1901CB28E070044A85E /* AppDelegate.swift */; };
 		C13CE1961CB28E070044A85E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C13CE1941CB28E070044A85E /* Main.storyboard */; };
 		C13CE1981CB28E070044A85E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C13CE1971CB28E070044A85E /* Assets.xcassets */; };
@@ -22,7 +23,6 @@
 		C1FFA9511CB4EFC9000D385B /* SAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA9501CB4EFC9000D385B /* SAHomeViewController.swift */; };
 		C1FFA9571CB503AF000D385B /* SAAVProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA9561CB503AF000D385B /* SAAVProfile.swift */; };
 		C1FFA95F1CB50628000D385B /* UIViewController+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA95E1CB50628000D385B /* UIViewController+Dialog.swift */; };
-		D1BB93AFF372999D17F951A6 /* libPods-AzRex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DD52E45ADB476F20534FCA /* libPods-AzRex.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,7 +45,7 @@
 /* Begin PBXFileReference section */
 		1F5B3C7638159BBF7A905588 /* Pods-AzRex.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AzRex.release.xcconfig"; path = "Pods/Target Support Files/Pods-AzRex/Pods-AzRex.release.xcconfig"; sourceTree = "<group>"; };
 		3AF6A7AD9A9AAAFA43D0F2AC /* Pods-AzRex.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AzRex.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AzRex/Pods-AzRex.debug.xcconfig"; sourceTree = "<group>"; };
-		62DD52E45ADB476F20534FCA /* libPods-AzRex.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-AzRex.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		AC0A8DAA6FACE9BBD2286F5A /* Pods_AzRex.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AzRex.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13CE18D1CB28E060044A85E /* AzRex.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AzRex.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		C13CE1901CB28E070044A85E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		C13CE1951CB28E070044A85E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -77,7 +77,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C198C6AB1CB3703000A64EB0 /* AVFoundation.framework in Frameworks */,
-				D1BB93AFF372999D17F951A6 /* libPods-AzRex.a in Frameworks */,
+				09F5B7FA45DA893837923358 /* Pods_AzRex.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -102,7 +102,7 @@
 			isa = PBXGroup;
 			children = (
 				C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */,
-				62DD52E45ADB476F20534FCA /* libPods-AzRex.a */,
+				AC0A8DAA6FACE9BBD2286F5A /* Pods_AzRex.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -566,7 +566,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AzRex/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mcoin.AzRex;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -586,7 +586,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = AzRex/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mcoin.AzRex;
 				PRODUCT_NAME = "$(TARGET_NAME)";

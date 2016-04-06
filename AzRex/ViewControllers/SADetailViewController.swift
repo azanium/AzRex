@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AVKit
+import MobilePlayer
 
 class SADetailViewController: UITableViewController {
 
@@ -76,6 +78,18 @@ class SADetailViewController: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        let video = self.videoList[indexPath.row]
+        
+        let filePath = NSHomeDirectory().stringByAppendingFormat("/Documents/%@/%@", self.documentPath, video)
+        let videoUrl = NSURL(fileURLWithPath: filePath)
+        
+        let playerVC = MobilePlayerViewController(contentURL: videoUrl)
+        playerVC.title = "AzRex - \(video)"
+        playerVC.activityItems = [videoUrl]
+        presentMoviePlayerViewControllerAnimated(playerVC)
+        
+        
     }
     
     

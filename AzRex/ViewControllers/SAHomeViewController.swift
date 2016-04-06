@@ -208,7 +208,7 @@ class SAHomeViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
-        self.selectedProject = self.projectList[indexPath.row]
+        self.selectedProject = self.projectList[self.projectList.count - indexPath.row - 1]
         
         self.performSegueWithIdentifier("showDetail", sender: self)
     }
@@ -224,7 +224,7 @@ class SAHomeViewController: UIViewController, UITableViewDataSource, UITableView
     func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         let deleteAction = UITableViewRowAction(style: UITableViewRowActionStyle.Destructive, title: "Delete") { (row, index) -> Void in
             
-            let project = self.projectList[index.row]
+            let project = self.projectList[self.projectList.count - indexPath.row - 1]
             
             let path = NSHomeDirectory().stringByAppendingFormat("/Documents/%@", project)
             
