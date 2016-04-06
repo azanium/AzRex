@@ -5,7 +5,6 @@ use_frameworks!
 
 target 'AzRex' do
 
-pod 'AFAmazonS3Manager'
 pod 'MBProgressHUD'
 pod 'MobilePlayer'
 
