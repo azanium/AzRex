@@ -128,8 +128,8 @@
 				C1FFA94F1CB4EFC9000D385B /* ViewControllers */,
 				C13CE1901CB28E070044A85E /* AppDelegate.swift */,
 				C13CE1941CB28E070044A85E /* Main.storyboard */,
-				C13CE1971CB28E070044A85E /* Assets.xcassets */,
 				C13CE1991CB28E070044A85E /* LaunchScreen.storyboard */,
+				C13CE1971CB28E070044A85E /* Assets.xcassets */,
 				C13CE19C1CB28E070044A85E /* Info.plist */,
 				C198C6A41CB3580200A64EB0 /* AzRex-Bridging-Header.h */,
 			);
@@ -541,6 +541,7 @@
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AzRex/AzRex-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -559,6 +560,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "AzRex/AzRex-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
