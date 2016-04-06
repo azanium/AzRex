@@ -22,6 +22,7 @@ class SAHomeViewController: UIViewController, UITableViewDataSource, UITableView
     var counter = 1
     var path = ""
     var projectList: [String] = []
+    var selectedProject: String = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -158,6 +159,16 @@ class SAHomeViewController: UIViewController, UITableViewDataSource, UITableView
         
     }
     
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if segue.destinationViewController is SADetailViewController {
+            let detailVC = segue.destinationViewController as! SADetailViewController
+            detailVC.documentPath = self.selectedProject
+            detailVC.reloadData()
+        }
+    }
+    
     // MARK: - UITableViewDataSource
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
@@ -196,6 +207,10 @@ class SAHomeViewController: UIViewController, UITableViewDataSource, UITableView
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         tableView.deselectRowAtIndexPath(indexPath, animated: true)
+        
+        self.selectedProject = self.projectList[indexPath.row]
+        
+        self.performSegueWithIdentifier("showDetail", sender: self)
     }
     
     func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

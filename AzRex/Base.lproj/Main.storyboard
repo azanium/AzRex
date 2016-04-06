@@ -45,15 +45,15 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="456"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="55" id="gga-Au-Lnh" customClass="SAProjectCell" customModule="AzRex" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="55" id="gga-Au-Lnh" customClass="SAProjectCell" customModule="AzRex" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="600" height="55"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gga-Au-Lnh" id="m6C-ca-M2O">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="54.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="567" height="55"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="USs-2w-iQo">
-                                                    <rect key="frame" x="16" y="17" width="568" height="21"/>
+                                                    <rect key="frame" x="16" y="17" width="535" height="21"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="21" id="RZj-Vu-BIu"/>
                                                     </constraints>
@@ -95,11 +95,60 @@
                         <outlet property="footerView" destination="Hjp-hR-Iqs" id="wEz-gf-PfM"/>
                         <outlet property="recordButton" destination="a8Z-AJ-iW6" id="yxv-dB-5AJ"/>
                         <outlet property="tableView" destination="bMR-s4-LYe" id="d6O-Xt-Ffi"/>
+                        <segue destination="Wwm-U5-CTj" kind="show" identifier="showDetail" id="ISH-Ve-m7r"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1137" y="315"/>
+        </scene>
+        <!--Detail View Controller-->
+        <scene sceneID="3SE-wg-GBK">
+            <objects>
+                <tableViewController id="Wwm-U5-CTj" customClass="SADetailViewController" customModule="AzRex" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="W0f-0Y-Ves">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ProjectCell" rowHeight="60" id="gpG-pw-wRy" customClass="SAProjectCell" customModule="AzRex" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="600" height="60"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="gpG-pw-wRy" id="2cI-Q5-K3J">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="60"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Qa7-Zn-QKb">
+                                            <rect key="frame" x="16" y="20" width="568" height="21"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="21" id="VnB-Td-zgW"/>
+                                            </constraints>
+                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
+                                            <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="Qa7-Zn-QKb" firstAttribute="centerY" secondItem="2cI-Q5-K3J" secondAttribute="centerY" id="H9b-ZE-qfE"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="Qa7-Zn-QKb" secondAttribute="trailing" constant="8" id="cwA-uy-AVy"/>
+                                        <constraint firstItem="Qa7-Zn-QKb" firstAttribute="leading" secondItem="2cI-Q5-K3J" secondAttribute="leadingMargin" constant="8" id="z95-PV-pmC"/>
+                                    </constraints>
+                                </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="projectLabel" destination="Qa7-Zn-QKb" id="N8x-UP-Fll"/>
+                                </connections>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Wwm-U5-CTj" id="tnq-Ha-oGL"/>
+                            <outlet property="delegate" destination="Wwm-U5-CTj" id="Czh-Ph-NEk"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="NSW-dL-adk"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nRi-3t-TEG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1839" y="315"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="tQc-Ak-336">

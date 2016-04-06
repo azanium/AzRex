@@ -4,7 +4,7 @@ inhibit_all_warnings!
 
 target 'AzRex' do
 
-pod 'SDWebImage'
+pod 'AFAmazonS3Manager'
 pod 'MBProgressHUD'
 
 

@@ -15,6 +15,7 @@
 		C13CE1B11CB28E070044A85E /* AzRexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13CE1B01CB28E070044A85E /* AzRexUITests.swift */; };
 		C14143A21CB523AE007D15FB /* ColorTools.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14143A11CB523AE007D15FB /* ColorTools.swift */; };
 		C14143A61CB52A8D007D15FB /* SAProjectCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14143A51CB52A8D007D15FB /* SAProjectCell.swift */; };
+		C14143AA1CB5389F007D15FB /* SADetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14143A91CB5389F007D15FB /* SADetailViewController.swift */; };
 		C198C6AB1CB3703000A64EB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */; };
 		C1FFA94D1CB4EFC3000D385B /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA94A1CB4EFC3000D385B /* SDAVAssetExportSession.m */; };
 		C1FFA94E1CB4EFC3000D385B /* SAVideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA94C1CB4EFC3000D385B /* SAVideoCapture.swift */; };
@@ -59,6 +60,7 @@
 		C13CE1B21CB28E070044A85E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		C14143A11CB523AE007D15FB /* ColorTools.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ColorTools.swift; sourceTree = "<group>"; };
 		C14143A51CB52A8D007D15FB /* SAProjectCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAProjectCell.swift; sourceTree = "<group>"; };
+		C14143A91CB5389F007D15FB /* SADetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SADetailViewController.swift; sourceTree = "<group>"; };
 		C198C6A41CB3580200A64EB0 /* AzRex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AzRex-Bridging-Header.h"; sourceTree = "<group>"; };
 		C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		C1FFA9491CB4EFC3000D385B /* SDAVAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDAVAssetExportSession.h; sourceTree = "<group>"; };
@@ -202,6 +204,7 @@
 			isa = PBXGroup;
 			children = (
 				C1FFA9501CB4EFC9000D385B /* SAHomeViewController.swift */,
+				C14143A91CB5389F007D15FB /* SADetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -410,6 +413,7 @@
 				C14143A61CB52A8D007D15FB /* SAProjectCell.swift in Sources */,
 				C1FFA94D1CB4EFC3000D385B /* SDAVAssetExportSession.m in Sources */,
 				C14143A21CB523AE007D15FB /* ColorTools.swift in Sources */,
+				C14143AA1CB5389F007D15FB /* SADetailViewController.swift in Sources */,
 				C1FFA9511CB4EFC9000D385B /* SAHomeViewController.swift in Sources */,
 				C13CE1911CB28E070044A85E /* AppDelegate.swift in Sources */,
 				C1FFA9571CB503AF000D385B /* SAAVProfile.swift in Sources */,
