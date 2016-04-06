@@ -1,0 +1,3 @@
+[submodule "ThirdParty/ffmpeg-wrapper"]
+	path = ThirdParty/ffmpeg-wrapper
+	url = git@github.com:ifactorylab/ffmpeg-wrapper.git

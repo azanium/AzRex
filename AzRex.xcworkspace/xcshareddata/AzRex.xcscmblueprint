@@ -1,0 +1,30 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "FC7238EB53BC813627AF997B1708EDD0F448E58A",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "248224E4B2C991E1BF6BB5D989F0A2FDA18E6545" : 0,
+    "FC7238EB53BC813627AF997B1708EDD0F448E58A" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "9D18846A-99A8-4B4B-BD9D-19779BA715EC",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "248224E4B2C991E1BF6BB5D989F0A2FDA18E6545" : "SDAVAssetExportSession\/",
+    "FC7238EB53BC813627AF997B1708EDD0F448E58A" : "AzRex\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "AzRex",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "AzRex.xcworkspace",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:rs\/SDAVAssetExportSession.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "248224E4B2C991E1BF6BB5D989F0A2FDA18E6545"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "github.com:azanium\/AzRex.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "FC7238EB53BC813627AF997B1708EDD0F448E58A"
+    }
+  ]
+}

@@ -15,6 +15,7 @@
 		C13CE1B11CB28E070044A85E /* AzRexUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = C13CE1B01CB28E070044A85E /* AzRexUITests.swift */; };
 		C198C6A91CB3670C00A64EB0 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C198C6A81CB3670C00A64EB0 /* HomeViewController.swift */; };
 		C198C6AB1CB3703000A64EB0 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */; };
+		C1FFA9431CB4C966000D385B /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA9421CB4C966000D385B /* SDAVAssetExportSession.m */; };
 		D1BB93AFF372999D17F951A6 /* libPods-AzRex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DD52E45ADB476F20534FCA /* libPods-AzRex.a */; };
 /* End PBXBuildFile section */
 
@@ -54,6 +55,8 @@
 		C198C6A41CB3580200A64EB0 /* AzRex-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "AzRex-Bridging-Header.h"; sourceTree = "<group>"; };
 		C198C6A81CB3670C00A64EB0 /* HomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		C198C6AA1CB3703000A64EB0 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		C1FFA9411CB4C966000D385B /* SDAVAssetExportSession.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SDAVAssetExportSession.h; path = ../../SDAVAssetExportSession/SDAVAssetExportSession.h; sourceTree = "<group>"; };
+		C1FFA9421CB4C966000D385B /* SDAVAssetExportSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SDAVAssetExportSession.m; path = ../../SDAVAssetExportSession/SDAVAssetExportSession.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -117,6 +120,8 @@
 		C13CE18F1CB28E070044A85E /* AzRex */ = {
 			isa = PBXGroup;
 			children = (
+				C1FFA9411CB4C966000D385B /* SDAVAssetExportSession.h */,
+				C1FFA9421CB4C966000D385B /* SDAVAssetExportSession.m */,
 				C13CE1901CB28E070044A85E /* AppDelegate.swift */,
 				C198C6A81CB3670C00A64EB0 /* HomeViewController.swift */,
 				C13CE1941CB28E070044A85E /* Main.storyboard */,
@@ -339,6 +344,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				C13CE1911CB28E070044A85E /* AppDelegate.swift in Sources */,
+				C1FFA9431CB4C966000D385B /* SDAVAssetExportSession.m in Sources */,
 				C198C6A91CB3670C00A64EB0 /* HomeViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -4,9 +4,8 @@ inhibit_all_warnings!
 
 target 'AzRex' do
 
-#pod 'IFVideoPicker', '~> 1.0.2'
 pod 'SDWebImage'
-#pod 'FFmpegWrapper'
+pod 'FFmpegWrapper'
 
 
 #post_install do |installer|
