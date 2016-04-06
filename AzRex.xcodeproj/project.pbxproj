@@ -17,7 +17,8 @@
 		C1FFA94D1CB4EFC3000D385B /* SDAVAssetExportSession.m in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA94A1CB4EFC3000D385B /* SDAVAssetExportSession.m */; };
 		C1FFA94E1CB4EFC3000D385B /* SAVideoCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA94C1CB4EFC3000D385B /* SAVideoCapture.swift */; };
 		C1FFA9511CB4EFC9000D385B /* SAHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA9501CB4EFC9000D385B /* SAHomeViewController.swift */; };
-		C1FFA9551CB4F044000D385B /* UIViewController+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA9541CB4F044000D385B /* UIViewController+Dialog.swift */; };
+		C1FFA9571CB503AF000D385B /* SAAVProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA9561CB503AF000D385B /* SAAVProfile.swift */; };
+		C1FFA95F1CB50628000D385B /* UIViewController+Dialog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C1FFA95E1CB50628000D385B /* UIViewController+Dialog.swift */; };
 		D1BB93AFF372999D17F951A6 /* libPods-AzRex.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 62DD52E45ADB476F20534FCA /* libPods-AzRex.a */; };
 /* End PBXBuildFile section */
 
@@ -60,7 +61,8 @@
 		C1FFA94A1CB4EFC3000D385B /* SDAVAssetExportSession.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDAVAssetExportSession.m; sourceTree = "<group>"; };
 		C1FFA94C1CB4EFC3000D385B /* SAVideoCapture.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAVideoCapture.swift; sourceTree = "<group>"; };
 		C1FFA9501CB4EFC9000D385B /* SAHomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAHomeViewController.swift; sourceTree = "<group>"; };
-		C1FFA9541CB4F044000D385B /* UIViewController+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dialog.swift"; sourceTree = "<group>"; };
+		C1FFA9561CB503AF000D385B /* SAAVProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SAAVProfile.swift; sourceTree = "<group>"; };
+		C1FFA95E1CB50628000D385B /* UIViewController+Dialog.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Dialog.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +159,7 @@
 		C1FFA9471CB4EFC3000D385B /* Common */ = {
 			isa = PBXGroup;
 			children = (
+				C1FFA95D1CB50628000D385B /* Extensions */,
 				C1FFA9481CB4EFC3000D385B /* AVAsset */,
 				C1FFA94B1CB4EFC3000D385B /* Utilities */,
 			);
@@ -175,8 +178,8 @@
 		C1FFA94B1CB4EFC3000D385B /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				C1FFA9561CB503AF000D385B /* SAAVProfile.swift */,
 				C1FFA94C1CB4EFC3000D385B /* SAVideoCapture.swift */,
-				C1FFA9541CB4F044000D385B /* UIViewController+Dialog.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -187,6 +190,14 @@
 				C1FFA9501CB4EFC9000D385B /* SAHomeViewController.swift */,
 			);
 			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		C1FFA95D1CB50628000D385B /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C1FFA95E1CB50628000D385B /* UIViewController+Dialog.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		E3DEA54E0A426284240550A7 /* Pods */ = {
@@ -381,10 +392,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C1FFA9551CB4F044000D385B /* UIViewController+Dialog.swift in Sources */,
+				C1FFA95F1CB50628000D385B /* UIViewController+Dialog.swift in Sources */,
 				C1FFA94D1CB4EFC3000D385B /* SDAVAssetExportSession.m in Sources */,
 				C1FFA9511CB4EFC9000D385B /* SAHomeViewController.swift in Sources */,
 				C13CE1911CB28E070044A85E /* AppDelegate.swift in Sources */,
+				C1FFA9571CB503AF000D385B /* SAAVProfile.swift in Sources */,
 				C1FFA94E1CB4EFC3000D385B /* SAVideoCapture.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

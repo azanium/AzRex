@@ -13,6 +13,7 @@ class SAVideoCapture: NSObject, UIImagePickerControllerDelegate, UINavigationCon
     
     private var onCaptureCallback: ((videoUrl: NSURL) -> Void)?
     private var onCaptureCanceledCallback: (()->())?
+    var deleteCacheAfterExport: Bool = false
     
     static var sharedInstance: SAVideoCapture {
         struct Static {
@@ -26,7 +27,7 @@ class SAVideoCapture: NSObject, UIImagePickerControllerDelegate, UINavigationCon
         
         return Static.instance!
     }
-    
+        
     // MARK: - Video Capture 
     
     func showVideoCapture(onCaptured: ((videoUrl: NSURL) -> Void)?, onCanceled: (()->())?) -> UIViewController {
@@ -99,7 +100,7 @@ class SAVideoCapture: NSObject, UIImagePickerControllerDelegate, UINavigationCon
         let fileMan = NSFileManager.defaultManager()
         
         if fileMan.fileExistsAtPath(outputPath) {
-            print("# outputPath is exist: \(outputPath)")
+            print("# outputPath is exist, erasing : \(outputPath)")
             
             do {
                 try fileMan.removeItemAtPath(outputPath)
@@ -130,10 +131,12 @@ class SAVideoCapture: NSObject, UIImagePickerControllerDelegate, UINavigationCon
                     onCompleted?(success: false, error: encoder.error)
                 }
                 
-                do {
-                    try NSFileManager().removeItemAtURL(source)
+                if self.deleteCacheAfterExport {
+                    do {
+                        try NSFileManager().removeItemAtURL(source)
+                    }
+                    catch _ {}
                 }
-                catch _ {}
             }
             
         }
