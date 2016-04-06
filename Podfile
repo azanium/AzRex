@@ -5,7 +5,7 @@ inhibit_all_warnings!
 target 'AzRex' do
 
 pod 'SDWebImage'
-pod 'M13ProgressSuite'
+pod 'MBProgressHUD'
 
 
 #post_install do |installer|

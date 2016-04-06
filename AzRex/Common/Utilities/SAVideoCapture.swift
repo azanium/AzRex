@@ -110,6 +110,7 @@ class SAVideoCapture: NSObject, UIImagePickerControllerDelegate, UINavigationCon
             }
         }
         
+        print("=> Exporting: \(targetFileName)")
         
         let avAsset = AVURLAsset(URL: source)
         let encoder = SDAVAssetExportSession(asset: avAsset)
@@ -154,16 +155,18 @@ class SAVideoCapture: NSObject, UIImagePickerControllerDelegate, UINavigationCon
     func imagePickerController(picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : AnyObject]) {
         
         dispatch_async(dispatch_get_main_queue()) {
+            if let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL {
+                
+                self.onCaptureCallback?(videoUrl: videoURL)
+            }
+            else {
+                
+                self.onCaptureCanceledCallback?()
+                
+            }
+            
             picker.dismissViewControllerAnimated(true) {
-                if let videoURL = info[UIImagePickerControllerMediaURL] as? NSURL {
-
-                    self.onCaptureCallback?(videoUrl: videoURL)
-                }
-                else {
-                    
-                    self.onCaptureCanceledCallback?()
-                    
-                }
+                
             }
         }
     }

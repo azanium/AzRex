@@ -14,25 +14,24 @@ import MobileCoreServices
 class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     let taskQ = dispatch_queue_create("AVSerialQueue", nil)
-    let progressView = M13ProgressHUD()
+    var progressView: MBProgressHUD!
     var counter = 1
     var path = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.progressView = MBProgressHUD(window: UIApplication.sharedApplication().keyWindow)
+        
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
-        
-        
     }
     
     func displayError(error: NSError!) {
         
-        //progressView.dismiss(true)
+        progressView.hide(true)
         if let _ = error {
             self.showAlert("\(error.code)", message: "\(error.localizedDescription)", dismissButton: "OK")
         }
@@ -44,9 +43,7 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
     
     func exportH264(videoUrl: NSURL) {
         
-        //progressView.setProgress(0, animated: true)
-        //progressView.show(true)
-        // Export Level 1
+        self.progressView.progress = Float(self.counter) / 5.0
         
         var profile: [NSObject:AnyObject]!
         switch counter {
@@ -65,7 +62,6 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
         }
         
         let target = "\(self.path)video\(self.counter)"
-        print("=> Exporting: \(target)")
         
         SAVideoCapture.sharedInstance.exportToMP4(videoUrl, targetFileName: target, videoSettings: profile, audioSettings: SAAudioProfile.Profile1) { (success, error) in
         
@@ -76,6 +72,7 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
                 }
                 else {
                     
+                    self.progressView.hide(true)
                     self.showAlert("Success", message: "The video successfully exported to MP4", dismissButton: "OK")
                     
                 }
@@ -110,7 +107,13 @@ class SAHomeViewController: UIViewController, UIImagePickerControllerDelegate, U
                 }
             }
             
-            self.exportH264(videoUrl)
+            dispatch_async(dispatch_get_main_queue(), { 
+                self.progressView = MBProgressHUD.showHUDAddedTo(self.view, animated: true)
+                self.progressView.mode = MBProgressHUDMode.AnnularDeterminate
+                self.progressView.labelText = "Exporting.."
+                self.exportH264(videoUrl)
+            })
+            
             
         }, onCanceled: nil)
         
