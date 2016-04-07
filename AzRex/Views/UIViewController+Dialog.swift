@@ -39,7 +39,6 @@ extension UIViewController {
     }
 }
 
-
 extension UIButton {
     
     func decorateCircularButton(useBorder: Bool) {

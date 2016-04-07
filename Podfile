@@ -7,7 +7,7 @@ target 'AzRex' do
 
 pod 'MBProgressHUD'
 pod 'MobilePlayer'
-
+pod 'AWSS3'
 
 #post_install do |installer|
 # installer.project.targets.each do |target|

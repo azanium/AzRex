@@ -9,7 +9,7 @@
 import UIKit
 import AVFoundation
 import MobileCoreServices
-
+import MBProgressHUD
 
 class SAHomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
@@ -165,7 +165,7 @@ class SAHomeViewController: UIViewController, UITableViewDataSource, UITableView
         if segue.destinationViewController is SADetailViewController {
             let detailVC = segue.destinationViewController as! SADetailViewController
             detailVC.documentPath = self.selectedProject
-            detailVC.reloadData()
+            //detailVC.reloadData()
         }
     }
     

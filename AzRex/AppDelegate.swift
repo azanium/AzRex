@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AWSS3
+
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
+    }
+    
+    func application(application: UIApplication, handleEventsForBackgroundURLSession identifier: String, completionHandler: () -> Void) {
+        let credentialsProvider = AWSCognitoCredentialsProvider(regionType: AWSS3Constants.CognitoRegionType, identityPoolId: AWSS3Constants.CognitoIdentityPoolId)
+        
+        let configuration = AWSServiceConfiguration(region: AWSS3Constants.DefaultServiceRegionType, credentialsProvider: credentialsProvider)
+        
+        AWSServiceManager.defaultServiceManager().defaultServiceConfiguration = configuration
     }
 
     func applicationWillResignActive(application: UIApplication) {

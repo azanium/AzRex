@@ -9,9 +9,18 @@
 import UIKit
 import AVKit
 import MobilePlayer
+import AWSS3
+import AWSCore
 
-class SADetailViewController: UITableViewController {
+class SADetailViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var uploadView: UIView!
+    @IBOutlet weak var uploadBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var progressBarView: UIProgressView!
+    @IBOutlet weak var uploadTitle: UILabel!
+    @IBOutlet weak var cancelButton: UIButton!
+    
     var documentPath: String = ""
     var videoList: [String] = []
     
@@ -23,19 +32,51 @@ class SADetailViewController: UITableViewController {
         self.tableView.backgroundColor = ColorTools.UIColorFromHexString("#101010")
         self.tableView.tableFooterView = UIView(frame: CGRectZero)
         
-        // Uncomment the following line to preserve selection between precsentations
-        self.clearsSelectionOnViewWillAppear = false
+        self.cancelButton.layer.cornerRadius = 5.0
+        self.cancelButton.layer.masksToBounds = true
+        self.cancelButton.addTarget(self, action: #selector(cancelUploadAction), forControlEvents: UIControlEvents.TouchUpInside)
+        
+        self.uploadView.backgroundColor = ColorTools.UIColorFromHexString("#303030")
+        
+        self.hideUploadView(false)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "upload"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(uploadAction))
     }
 
-    override func viewDidAppear(animated: Bool) {
+    override func viewWillAppear(animated: Bool) {
+        self.reloadData()
+        
         
     }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
+    }
+    
+    func hideUploadView(animated: Bool) {
+        if (animated) {
+            self.uploadBottomConstraint.constant = 0.0
+            UIView.animateWithDuration(0.3, animations: { 
+                    self.uploadBottomConstraint.constant = -self.uploadView.frame.size.height
+                    self.view.layoutIfNeeded()
+                })
+        }
+        else {
+            self.uploadBottomConstraint.constant = -self.uploadView.frame.size.height
+        }
+    }
+    
+    func showUploadView(animated: Bool) {
+        if animated {
+            UIView.animateWithDuration(0.3, animations: { 
+                self.uploadBottomConstraint.constant = 0
+                self.view.layoutIfNeeded()
+            })
+        }
+        else {
+            self.uploadBottomConstraint.constant = 0
+        }
     }
 
     // MARK: - Data
@@ -56,16 +97,16 @@ class SADetailViewController: UITableViewController {
     
     // MARK: - Table view data source
 
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 1
     }
 
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.videoList.count
     }
 
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ProjectCell", forIndexPath: indexPath) as! SAProjectCell
 
         let video = self.videoList[indexPath.row]
@@ -76,7 +117,7 @@ class SADetailViewController: UITableViewController {
         return cell
     }
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         self.tableView.deselectRowAtIndexPath(indexPath, animated: true)
         
         let video = self.videoList[indexPath.row]
@@ -87,9 +128,7 @@ class SADetailViewController: UITableViewController {
         let playerVC = MobilePlayerViewController(contentURL: videoUrl)
         playerVC.title = "AzRex - \(video)"
         playerVC.activityItems = [videoUrl]
-        presentMoviePlayerViewControllerAnimated(playerVC)
-        
-        
+        presentMoviePlayerViewControllerAnimated(playerVC)    
     }
     
     
@@ -97,6 +136,15 @@ class SADetailViewController: UITableViewController {
     
     func uploadAction() {
         print("Uploading")
+        
+        let _ = AWSS3TransferManager.defaultS3TransferManager()
+        self.navigationItem.rightBarButtonItem?.enabled = false
+        self.showUploadView(true)
     }
-
+    
+    func cancelUploadAction() {
+        self.navigationItem.rightBarButtonItem?.enabled = true
+        self.hideUploadView(true)
+    }
+ 
 }
