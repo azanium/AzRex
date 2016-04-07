@@ -21,7 +21,7 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var uploadTitle: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     
-    var currentUploadRequest: AWSS3TransferManagerUploadRequest!
+    var uploadRequests: [AWSS3TransferManagerUploadRequest] = []
     
     var documentPath: String = ""
     var videoList: [String] = []
@@ -43,17 +43,10 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
         self.hideUploadView(false)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "upload"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(uploadAction))
-        
-        self.currentUploadRequest = AWSS3TransferManagerUploadRequest()
-        currentUploadRequest.body = NSURL(fileURLWithPath: NSHomeDirectory().stringByAppendingFormat("/Documents/%@/video5.mp4", self.documentPath))
-        currentUploadRequest.key = "videos/\(self.documentPath)_video5.mp4"
-        currentUploadRequest.bucket = AWSS3Constants.S3BucketName
     }
 
     override func viewWillAppear(animated: Bool) {
         self.reloadData()
-        
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,6 +82,9 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - Data
     
     func reloadData() {
+        self.videoList.removeAll()
+        self.uploadRequests.removeAll()
+        
         let path = NSHomeDirectory().stringByAppendingFormat("/Documents/%@", self.documentPath)
         
         do {
@@ -96,6 +92,15 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
         }
         catch _ {
             print("# Cant load contents of directory")
+        }
+        
+        for video in self.videoList {
+            let uploadRequest = AWSS3TransferManagerUploadRequest()
+            uploadRequest.body = NSURL(fileURLWithPath: NSHomeDirectory().stringByAppendingFormat("/Documents/%@/%@", self.documentPath, video))
+            uploadRequest.key = "videos/\(self.documentPath)-\(video)"
+            uploadRequest.bucket = AWSS3Constants.S3BucketName
+            
+            self.uploadRequests += [uploadRequest]
         }
         
         self.navigationItem.title = "Videos"
@@ -142,17 +147,39 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
     // MARK: - Upload
     
     func uploadAction() {
-        print("Uploading")
-        
-        self.navigationItem.rightBarButtonItem?.enabled = false
-        self.showUploadView(true)
-        
-        self.upload(self.currentUploadRequest)
+        if (self.uploadRequests.count > 0) {
+            print("# Start uploading")
+            
+            self.progressBarView.progress = 0.0
+            self.uploadTitle.text = "Preparing..."
+            self.navigationItem.rightBarButtonItem?.enabled = false
+            self.showUploadView(true)
+            
+            self.upload(self.uploadRequests[0])
+        }
+        else {
+            self.showAlert("", message: "No videos to upload", dismissButton: "OK")
+        }
     }
     
     func cancelUploadAction() {
+        
+        for request in self.uploadRequests {
+            request.cancel().continueWithBlock({ (task) -> AnyObject? in
+                if let error = task.error {
+                    print("cancel() failed: [\(error)]")
+                }
+                if let exception = task.exception {
+                    print("cancel() failed: [\(exception)]")
+                }
+                return nil
+            })
+        }
+        
         self.navigationItem.rightBarButtonItem?.enabled = true
         self.hideUploadView(true)
+        
+        self.reloadData()
     }
  
     func displayError(error: NSError!) {
@@ -163,9 +190,14 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
             
         }
     }
+    
     func upload(request: AWSS3TransferManagerUploadRequest) {
         let transferManager = AWSS3TransferManager.defaultS3TransferManager()
-        
+
+        let remaining = self.videoList.count-self.uploadRequests.count+1
+        let total = self.videoList.count
+        self.uploadTitle.text = "Uploading \(remaining) of \(total)..."
+
         request.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
             dispatch_async(dispatch_get_main_queue(), { () -> Void in
                 if totalBytesExpectedToSend > 0 {
@@ -205,7 +237,22 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
             
             if task.result != nil {
                 dispatch_async(dispatch_get_main_queue()) {
-                    self.showAlert("Success", message: "Upload finished", dismissButton: "OK")
+                    if let index = self.uploadRequests.indexOf(request) {
+                        self.uploadRequests.removeAtIndex(index)
+                        
+                        if self.uploadRequests.count > 0 {
+                            self.upload(self.uploadRequests[0])
+                        }
+                        else {
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.hideUploadView(true)
+                                self.showAlert("Success", message: "Upload finished", dismissButton: "OK")
+                            }
+                        }
+                    }
+                    else {
+                        self.showAlert("ERROR", message: "Invalid upload index", dismissButton: "OK")
+                    }
                 }
             }
             
