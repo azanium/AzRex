@@ -12,7 +12,11 @@ Project name: 07-04-2016-07-32-38
 
 The video paths on S3 will be: 
 1. https://s3.amazonaws.com/azrex/videos/07-04-2016-07-32-38-video1.mp4
+
 2. https://s3.amazonaws.com/azrex/videos/07-04-2016-07-32-38-video2.mp4
+
 3. https://s3.amazonaws.com/azrex/videos/07-04-2016-07-32-38-video3.mp4
+
 4. https://s3.amazonaws.com/azrex/videos/07-04-2016-07-32-38-video4.mp4
+
 5. https://s3.amazonaws.com/azrex/videos/07-04-2016-07-32-38-video5.mp4
