@@ -21,6 +21,8 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
     @IBOutlet weak var uploadTitle: UILabel!
     @IBOutlet weak var cancelButton: UIButton!
     
+    var currentUploadRequest: AWSS3TransferManagerUploadRequest!
+    
     var documentPath: String = ""
     var videoList: [String] = []
     
@@ -41,6 +43,11 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
         self.hideUploadView(false)
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(named: "upload"), style: UIBarButtonItemStyle.Plain, target: self, action: #selector(uploadAction))
+        
+        self.currentUploadRequest = AWSS3TransferManagerUploadRequest()
+        currentUploadRequest.body = NSURL(fileURLWithPath: NSHomeDirectory().stringByAppendingFormat("/Documents/%@/video5.mp4", self.documentPath))
+        currentUploadRequest.key = "videos/\(self.documentPath)_video5.mp4"
+        currentUploadRequest.bucket = AWSS3Constants.S3BucketName
     }
 
     override func viewWillAppear(animated: Bool) {
@@ -137,9 +144,10 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
     func uploadAction() {
         print("Uploading")
         
-        let _ = AWSS3TransferManager.defaultS3TransferManager()
         self.navigationItem.rightBarButtonItem?.enabled = false
         self.showUploadView(true)
+        
+        self.upload(self.currentUploadRequest)
     }
     
     func cancelUploadAction() {
@@ -147,4 +155,62 @@ class SADetailViewController: UIViewController, UITableViewDataSource, UITableVi
         self.hideUploadView(true)
     }
  
+    func displayError(error: NSError!) {
+        dispatch_async(dispatch_get_main_queue()) { 
+            
+            self.cancelUploadAction()
+            self.showAlert("ERROR", message: error.localizedDescription, dismissButton: "OK")
+            
+        }
+    }
+    func upload(request: AWSS3TransferManagerUploadRequest) {
+        let transferManager = AWSS3TransferManager.defaultS3TransferManager()
+        
+        request.uploadProgress = { (bytesSent, totalBytesSent, totalBytesExpectedToSend) -> Void in
+            dispatch_async(dispatch_get_main_queue(), { () -> Void in
+                if totalBytesExpectedToSend > 0 {
+                    self.progressBarView.progress = Float(Double(totalBytesSent) / Double(totalBytesExpectedToSend))
+                }
+            })
+        }
+        
+        transferManager.upload(request).continueWithBlock { (task) -> AnyObject? in
+            if let error = task.error {
+                if error.domain == AWSS3TransferManagerErrorDomain as String {
+                    if let errorCode = AWSS3TransferManagerErrorType(rawValue: error.code) {
+                        switch errorCode {
+                        case .Cancelled, .Paused:
+                            dispatch_async(dispatch_get_main_queue()) {
+                                self.hideUploadView(true)
+                                self.showAlert("Canceled", message: "Your upload has been cancelled", dismissButton: "OK")
+                            }
+                            
+                        default:
+                            
+                            self.displayError(error)
+                        }
+                    }
+                    else {
+                        self.displayError(error)
+                    }
+                }
+                else {
+                    self.displayError(error)
+                }
+            }
+            
+            if let exception = task.exception {
+                 print("upload() failed: [\(exception)]")
+            }
+            
+            if task.result != nil {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.showAlert("Success", message: "Upload finished", dismissButton: "OK")
+                }
+            }
+            
+            return nil
+        }
+        
+    }
 }
